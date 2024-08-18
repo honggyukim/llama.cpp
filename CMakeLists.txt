@@ -53,6 +53,13 @@ endif()
 # debug
 option(LLAMA_ALL_WARNINGS           "llama: enable all compiler warnings"                   ON)
 option(LLAMA_ALL_WARNINGS_3RD_PARTY "llama: enable all compiler warnings in 3rd party libs" OFF)
+option(LLAMA_GPROF                  "llama: enable gprof"                                   OFF)
+
+if (NOT MSVC)
+    if (LLAMA_GPROF)
+        add_compile_options(-pg)
+    endif()
+endif()
 
 # build
 option(LLAMA_FATAL_WARNINGS "llama: enable -Werror flag" OFF)
